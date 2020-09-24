@@ -12,20 +12,20 @@ let bg = {
 let circle1 = {
   x: 0,
   y: 250,
-  size: 100,
-  growthRate: 1,
-  speed: 1,
+  size: 0,
+  growthRate: 0.05,
+  speed: 0.25,
   fill: 255,
-  alpha: 200
+  alpha: 255
 };
-let circle2 = {
+let square1 = {
   x: 500,
-  y: 250,
-  size: 75,
+  y: 150,
+  size: 0,
   sizeRatio: 0.5,
-  speed: -1,
+  speed: -0.25,
   fill: 255,
-  alpha: 200
+  alpha: 255
 };
 
 // setup()
@@ -45,20 +45,26 @@ function setup() {
 // Description of draw() goes here.
 function draw() {
    background(bg.r,bg.g,bg.b);
-   bg.r = map(circle1.size, 100, width, 0,255);
+   bg.b = map(circle1.x, 100, width, 0,255);
 
-   //left circcle
+   //triangle
+   fill(255,255);
+   triangle(0, 500, 500, 500, 250, 250);
+
+   //moving circle (direction: right)
    circle1.x = circle1.x + circle1.speed;
-   circle1.x = constrain(circle1.x, 0, width/2)
+   // circle1.x = constrain(circle1.x, 0, width/2)
    circle1.size = circle1.size + circle1.growthRate;
    circle1.size = constrain(circle1.size, 0, width)
    fill(circle1.fill, circle1.alpha);
    ellipse(circle1.x, circle1.y, circle1.size)
 
-   //right circle
-   circle2.x = circle2.x + circle2.speed;
-   circle2.x = constrain(circle2.x, width/2, width);
-   circle2.size = circle1.size * circle2.sizeRatio;
-   fill(circle2.fill, circle2.alpha);
-   ellipse(circle2.x, circle2.y, circle2.size)
+   //moving square (direction: left)
+   square1.x = square1.x + square1.speed;
+   square1.size = circle1.size * square1.sizeRatio;
+   fill(square1.fill, square1.alpha);
+   square(square1.x, square1.y, square1.size)
+
+
+
 }
