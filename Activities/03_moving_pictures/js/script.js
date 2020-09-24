@@ -22,7 +22,7 @@ let circle2 = {
   x: 500,
   y: 250,
   size: 75,
-  sizeRatio: 0.75,
+  sizeRatio: 0.5,
   speed: -1,
   fill: 255,
   alpha: 200
@@ -58,7 +58,7 @@ function draw() {
    //right circle
    circle2.x = circle2.x + circle2.speed;
    circle2.x = constrain(circle2.x, width/2, width);
-   circle2.size = circle1.size * circle1.sizeRatio;
+   circle2.size = circle1.size * circle2.sizeRatio;
    fill(circle2.fill, circle2.alpha);
    ellipse(circle2.x, circle2.y, circle2.size)
 }
