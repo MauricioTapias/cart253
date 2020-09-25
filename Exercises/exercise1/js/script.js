@@ -1,9 +1,12 @@
 /**************************************************
-Template p5 project
-Pippin Barr
+E1: A Square And A Circle On The Road
+Mauricio Tapias
 
-Here is a description of this template p5 project.
+This is my  first exercice for CART253. Here, I illustrate a simple square and a circle on the road.
+In this exercice, the shapes and the background color interact with the user's mouse.
+Furthermore, the shapes also seem to get closer to the audience as they grow in size with time.
 **************************************************/
+//Variables: Background(bg); moving circle (circle1); moving square (square1); triangle: road (triangle1); horizon line (line1).
 let bg = {
   r: 250,
   g: 100,
@@ -47,7 +50,7 @@ let line1 = {
 
 // setup()
 //
-// Description of setup() goes here.
+// Canvas dimensions, noStroke & rectMode.
 function setup() {
   createCanvas(500,500);
   noStroke();
@@ -56,7 +59,7 @@ rectMode(CENTER)
 
 // draw()
 //
-// Description of draw() goes here.
+// Drawn shapes (circle, triangle, square, line).
 function draw() {
    background(bg.r,bg.g,bg.b);
    bg.b = map(mouseY, 0, width, 0,255);
@@ -78,7 +81,6 @@ function draw() {
 
    //moving circle (direction: right)
    circle1.x = mouseX;
-   // circle1.x = constrain(circle1.x, 0, width/2)
    circle1.size = circle1.size + circle1.growthRate;
    circle1.size = constrain(circle1.size, 0, width)
    fill(circle1.fill, circle1.alpha);
