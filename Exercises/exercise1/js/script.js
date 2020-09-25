@@ -27,6 +27,23 @@ let square1 = {
   fill: 0,
   alpha: 255
 };
+let triangle1 = {
+  x1: 0,
+  y1: 500,
+  x2: 500,
+  y2: 500,
+  x3: 250,
+  y3: 250,
+  fill: 255,
+  alpha: 255
+};
+let line1 = {
+  x1: 0,
+  y1: 250,
+  x2: 500,
+  y2: 250,
+  fill: 255,
+};
 
 // setup()
 //
@@ -45,12 +62,12 @@ function draw() {
    bg.b = map(mouseY, 0, width, 0,255);
 
    //horizon line
-   line(0,250,500,250)
-   stroke(255)
+   line(line1.x1,line1.y1,line1.x2,line1.y2)
+   stroke(line1.fill)
 
-   //triangle
-   fill(255,255);
-   triangle(0, 500, 500, 500, 250, 250);
+   //triangle: road
+   fill(triangle1.fill,triangle1.alpha);
+   triangle(triangle1.x1, triangle1.y1, triangle1.x2, triangle1.y2, triangle1.x3, triangle1.y3);
 
    //moving square (direction: left)
    square1.y = square1.y + square1.speed;
@@ -66,9 +83,5 @@ function draw() {
    circle1.size = constrain(circle1.size, 0, width)
    fill(circle1.fill, circle1.alpha);
    ellipse(circle1.x, circle1.y, circle1.size)
-
-
-
-
 
 }
