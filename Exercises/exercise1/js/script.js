@@ -1,9 +1,9 @@
 /**************************************************
-E1: A Square And A Circle On The Road
+E1: I like to move it move it!
 Mauricio Tapias
 
-This is my  first exercice for CART253. Here, I illustrate a simple square and a circle on the road.
-In this exercice, the shapes and the background color interact with the user's mouse.
+This is my  first exercise for CART253. Here, I illustrate a simple square and a circle on the road.
+In this exercise, the shapes and the background color interact with the user's mouse.
 Furthermore, the shapes also seem to get closer to the audience as they grow in size with time.
 **************************************************/
 //Variables: Background(bg); moving circle (circle1); moving square (square1); triangle: road (triangle1); horizon line (line1).
