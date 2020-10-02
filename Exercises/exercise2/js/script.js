@@ -1,9 +1,14 @@
 /**************************************************
-Template p5 project
-Pippin Barr
+Exercise 02
+MAuricio Tapias
 
-Here is a description of this template p5 project.
+Here is an exercise where a white square tries to evade one covid19
+while covid20 tries to obstruct its vision. Kermit sits back and follows the white square through his escape.
+By holding the mouse button the user can make the white square smaller in order to escape more easily.
+The user can also place covid20 on another location by clicking the mouse on the desired spot.
+
 **************************************************/
+
 let covid19 = {
   x: 0,
   y: 250,
@@ -48,7 +53,7 @@ kermitImage = loadImage("assets/images/kermit.png")
 
 // setup()
 //
-// Description of setup() goes here.
+// Canvas; covid19 positions; no cursor;
 function setup() {
 createCanvas(windowWidth,windowHeight);
 
@@ -60,12 +65,14 @@ noCursor();
 
 // draw()
 //
-// Description of draw() goes here.
+// background; no stroke; kermitimage; covid 19-20 movement & growth; user movement; display of user and covid 19-20;
 function draw() {
    background (50, 255, 50);
 
+//shape outline
    noStroke()
 
+//kermit image
    imageMode(CENTER);
    image(kermitImage, mouseX, mouseY);
 
@@ -108,7 +115,7 @@ function draw() {
      user.x = mouseX;
      user.y = mouseY;
 
-     // check for catching covid19
+     // check for bumping covid19
      let d = dist(user.x,user.y,covid19.x,covid19.y);
      if (d < covid19.size/2 + user.size/2) {
     noLoop();
@@ -126,10 +133,8 @@ function draw() {
    fill(user.fill);
    square(user.x, user.y, user.size);
 
-
-
 }
-
+// Mouse functions: pressed & dragged;
 
 // covid 20 position change
 function mousePressed() {
