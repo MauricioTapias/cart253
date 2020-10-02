@@ -39,6 +39,13 @@ let user = {
   fill: 255,
 };
 
+let kermitImage;
+
+function preload() {
+kermitImage = loadImage("assets/images/kermit.png")
+}
+
+
 // setup()
 //
 // Description of setup() goes here.
@@ -58,6 +65,10 @@ function draw() {
    background (50, 255, 50);
 
    noStroke()
+
+   imageMode(CENTER);
+   image(kermitImage, mouseX, mouseY);
+
 
    // covid 19 movement
    covid19.x = covid19.x + covid19.vx;
@@ -115,7 +126,11 @@ function draw() {
    fill(user.fill);
    square(user.x, user.y, user.size);
 
+
+
 }
+
+
 // covid 20 position change
 function mousePressed() {
   covid20.x = mouseX;
