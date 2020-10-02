@@ -13,8 +13,22 @@ let covid19 = {
   speed: 5,
   fill: {
     r: 255,
-    g:0,
-    b:0,
+    g:50,
+    b:120,
+  }
+};
+
+let covid20 = {
+  x: 750,
+  y: 350,
+  size:100,
+  vx: 0,
+  vy:0,
+  speed: 5,
+  fill: {
+    r: 255,
+    g:50,
+    b:120,
   }
 };
 
@@ -24,8 +38,6 @@ let user = {
   size: 100,
   fill: 255,
 };
-
-let numStatic = 5000;
 
 // setup()
 //
@@ -43,15 +55,9 @@ noCursor();
 //
 // Description of draw() goes here.
 function draw() {
-   background (0);
+   background (50, 255, 50);
 
-// display static
-for (let i = 0; i < numStatic; i++) {
-  let x = random (0,width);
-  let y = random (0,height);
-  stroke(255);
-  point(x,y);
-}
+   noStroke()
 
    // covid 19 movement
    covid19.x = covid19.x + covid19.vx;
@@ -70,10 +76,28 @@ for (let i = 0; i < numStatic; i++) {
         covid19.size = 100;
       }
 
+      // covid 20 movement
+      covid20.x = covid20.x + covid20.vx;
+      covid20.y = covid20.y + covid20.vy;
+
+      if (covid20.x > width) {
+        covid20.x = 0;
+        covid20.y = random(0,height);
+        }
+
+        //covid 20 growth
+       if (covid20.x < width/1.002){
+         covid20.size = covid20.size + 0.5;
+         }
+         else {
+           covid20.size = 100;
+         }
 
      //user movement
      user.x = mouseX;
      user.y = mouseY;
+
+
 
      // check for catching covid19
      let d = dist(user.x,user.y,covid19.x,covid19.y);
@@ -85,10 +109,14 @@ for (let i = 0; i < numStatic; i++) {
    fill(covid19.fill.r, covid19.fill.g, covid19.fill.b);
    ellipse(covid19.x, covid19.y, covid19.size);
 
+   // display covid 20
+   fill(covid20.fill.r, covid20.fill.g, covid20.fill.b);
+   ellipse(covid20.x, covid20.y, covid20.size);
+
 
    // display user
    fill(user.fill);
-   ellipse(user.x, user.y, user.size);
+   square(user.x, user.y, user.size);
 
 
 }
