@@ -97,8 +97,6 @@ function draw() {
      user.x = mouseX;
      user.y = mouseY;
 
-
-
      // check for catching covid19
      let d = dist(user.x,user.y,covid19.x,covid19.y);
      if (d < covid19.size/2 + user.size/2) {
@@ -118,8 +116,13 @@ function draw() {
    square(user.x, user.y, user.size);
 
 }
-
+// covid 20 position change
 function mousePressed() {
   covid20.x = mouseX;
   covid20.y = mouseY;
+}
+
+// user cursor shrink
+function mouseDragged() {
+  user.size = user.size - 1;
 }
