@@ -3,7 +3,7 @@ Exercise 02
 MAuricio Tapias
 
 Here is an exercise where a white square tries to evade one covid19
-while covid20 tries to obstruct its vision. Kermit sits back and follows the white square through his escape.
+while covid20 grows and obstructs the users' vision. Kermit sits back and follows the white square through his escape.
 By holding the mouse button the user can make the white square smaller in order to escape more easily.
 The user can also place covid20 on another location by clicking the mouse on the desired spot.
 
