@@ -62,6 +62,15 @@ for (let i = 0; i < numStatic; i++) {
      covid19.y = random(0,height);
      }
 
+     //covid 19 growth
+    if (covid19.x < width/1.002){
+      covid19.size = covid19.size + 3;
+      }
+      else {
+        covid19.size = 100;
+      }
+
+
      //user movement
      user.x = mouseX;
      user.y = mouseY;
@@ -75,6 +84,7 @@ for (let i = 0; i < numStatic; i++) {
      // display covid 19
    fill(covid19.fill.r, covid19.fill.g, covid19.fill.b);
    ellipse(covid19.x, covid19.y, covid19.size);
+
 
    // display user
    fill(user.fill);
