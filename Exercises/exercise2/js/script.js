@@ -87,7 +87,7 @@ function draw() {
 
         //covid 20 growth
        if (covid20.x < width/1.002){
-         covid20.size = covid20.size + 0.5;
+         covid20.size = covid20.size + 1;
          }
          else {
            covid20.size = 100;
@@ -113,10 +113,13 @@ function draw() {
    fill(covid20.fill.r, covid20.fill.g, covid20.fill.b);
    ellipse(covid20.x, covid20.y, covid20.size);
 
-
    // display user
    fill(user.fill);
    square(user.x, user.y, user.size);
 
+}
 
+function mousePressed() {
+  covid20.x = mouseX;
+  covid20.y = mouseY;
 }
