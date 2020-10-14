@@ -41,10 +41,10 @@ let user = {
   fill: 255,
 };
 
-let kermitImage;
+let stickyImage;
 
 function preload() {
-kermitImage = loadImage("assets/images/kermit.png")
+stickyImage = loadImage("assets/images/logo.png")
 }
 
 
@@ -71,7 +71,7 @@ function draw() {
 
 //kermit image
    imageMode(CENTER);
-   image(kermitImage, mouseX, mouseY);
+   image(stickyImage, mouseX, mouseY);
 
 
    // covid 19 movement
