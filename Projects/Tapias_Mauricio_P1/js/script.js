@@ -20,7 +20,7 @@ let outfit1 = {
   }
 };
 
-let covid20 = {
+let stickyman = {
   x: 750,
   y: 350,
   size: 100,
@@ -68,7 +68,7 @@ move();
 //Sticky image
 push()
    imageMode(CENTER);
-   image(stickyImage, covid20.x, covid20.y);
+   image(stickyImage, stickyman.x, stickyman.y);
 pop()
 
 // outfit1 movement
@@ -82,19 +82,17 @@ pop()
 
 // stickyImage movement
   function move() {
-    covid20.x = covid20.x + covid20.vx;
-    covid20.y = covid20.y + covid20.vy;
+    stickyman.x = stickyman.x + stickyman.vx;
+    stickyman.y = stickyman.y + stickyman.vy;
   }
-
-
 
      //user movement
      // user.x = mouseX;
      // user.y = mouseY;
 
 // check for bumping covid19
-     let d = dist(covid20.x,covid20.y,outfit1.x,outfit1.y);
-     if (d < outfit1.size/2 + covid20.size/2) {
+     let d = dist(stickyman.x,stickyman.y,outfit1.x,outfit1.y);
+     if (d < outfit1.size/2 + stickyman.size/2) {
     noLoop();
      }
 
@@ -103,6 +101,7 @@ pop()
 
 
 }
+
 // Mouse functions: pressed & dragged;
 
 // covid 20 position change
@@ -119,23 +118,23 @@ pop()
 // stickyImage controls
 function handleInput() {
   if (keyIsDown (UP_ARROW)) {
-    covid20.vy = -covid20.speed;
+    stickyman.vy = -stickyman.speed;
   }
   else if (keyIsDown (DOWN_ARROW)) {
-    covid20.vy = covid20.speed;
+    stickyman.vy = stickyman.speed;
   }
   else {
-    covid20.vy = 0;
+    stickyman.vy = 0;
   }
 
 
   if (keyIsDown (LEFT_ARROW)) {
-    covid20.vx = -covid20.speed;
+    stickyman.vx = -stickyman.speed;
   }
   else if (keyIsDown (RIGHT_ARROW)) {
-    covid20.vx = covid20.speed;
+    stickyman.vx = stickyman.speed;
   }
   else {
-    covid20.vx = 0;
+    stickyman.vx = 0;
   }
 }
