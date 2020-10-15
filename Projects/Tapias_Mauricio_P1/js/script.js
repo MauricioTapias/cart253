@@ -14,6 +14,8 @@ let outfit1 = {
   vx: 0,
   vy: 0,
   speed: 5,
+  minspeed: 2,
+  maxspeed: 20,
 };
 
 let outfit2 = {
@@ -130,6 +132,7 @@ function simulation() {
   if (outfit1.y > height) {
     outfit1.y = random(0, -200);
     outfit1.x = random(0, width);
+    outfit1.vy = random (outfit1.minspeed, outfit1.maxspeed);
   }
 
   // outfit2 movement
