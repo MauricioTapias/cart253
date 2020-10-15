@@ -39,8 +39,8 @@ let covid20 = {
 let stickyImage;
 let outfit1Image;
 function preload() {
-stickyImage = loadImage("assets/images/logo.png");
-outfit1Image = loadImage("assets/images/stickman-outfit1.png");
+stickyImage = loadImage("assets/images/stickyman.png");
+outfit1Image = loadImage("assets/images/outfit1.png");
 }
 
 
@@ -66,11 +66,12 @@ handleInput();
 move();
 
 //Sticky image
+push()
    imageMode(CENTER);
    image(stickyImage, covid20.x, covid20.y);
+pop()
 
-
-   // covid 19 movement
+// outfit1 movement
    outfit1.x = outfit1.x + outfit1.vx;
    outfit1.y = outfit1.y + outfit1.vy;
 
@@ -79,10 +80,11 @@ move();
      outfit1.x = random(0,width);
      }
 
-function move() {
-  covid20.x = covid20.x + covid20.vx;
-  covid20.y = covid20.y + covid20.vy;
-}
+// stickyImage movement
+  function move() {
+    covid20.x = covid20.x + covid20.vx;
+    covid20.y = covid20.y + covid20.vy;
+  }
 
 
 
@@ -90,13 +92,13 @@ function move() {
      // user.x = mouseX;
      // user.y = mouseY;
 
-     // check for bumping covid19
+// check for bumping covid19
      let d = dist(covid20.x,covid20.y,outfit1.x,outfit1.y);
      if (d < outfit1.size/2 + covid20.size/2) {
     noLoop();
      }
 
-     // display outfit1
+// display outfit1
    image(outfit1Image, outfit1.x, outfit1.y, outfit1.size);
 
 
@@ -114,7 +116,7 @@ function move() {
 //   user.size = user.size - 1;
 // }
 
-
+// stickyImage controls
 function handleInput() {
   if (keyIsDown (UP_ARROW)) {
     covid20.vy = -covid20.speed;
