@@ -32,6 +32,7 @@ let stickyman = {
   vy:0,
   speed: 5,
 };
+
 //**************************//
 let state = 'title';
 //**************************//
@@ -75,8 +76,13 @@ noCursor();
 function draw() {
    background (255, 255, 255);
 
-handleInput();
-move();
+
+// simulation
+simulation();
+
+function simulation() {
+  move();
+  handleInput();
 
 // outfit1 movement
    outfit1.x = outfit1.x + outfit1.vx;
@@ -103,14 +109,12 @@ move();
     stickyman.y = stickyman.y + stickyman.vy;
   }
 
-     //user movement
-     // user.x = mouseX;
-     // user.y = mouseY;
 
 // check for bumping with outfit
      let d = dist(stickyman.x,stickyman.y,outfit1.x,outfit1.y);
      if (d < outfit1.size/2 + stickyman.size/2) {
-    noLoop();
+      state = 'love';
+      noLoop();
      }
 
 // display outfit1 & outfit2
@@ -124,18 +128,6 @@ move();
    pop()
 }
 
-// Mouse functions: pressed & dragged;
-
-// covid 20 position change
-// function mousePressed() {
-//   covid20.x = mouseX;
-//   covid20.y = mouseY;
-// }
-//
-// // user cursor shrink
-// function mouseDragged() {
-//   user.size = user.size - 1;
-// }
 
 // stickyImage controls
 function handleInput() {
@@ -159,6 +151,8 @@ function handleInput() {
   else {
     stickyman.vx = 0;
   }
+}
+
 
 //**************************//
   //TITLES
@@ -171,56 +165,48 @@ if (state === 'title') {
   else if (state === 'love') {
     love();
   }
-  else if (state === 'sadness') {
-    sadness();
-  }
 //**************************//
 
 //**************************//
 function title() {
   push();
-  textSize(64);
-  fill(200,100,100);
+  background (255, 255, 255);
+  textSize(60);
+  fill(0,0,0);
+  textStyle(BOLD);
+  stroke(255,200,50);
+  strokeWeight(17);
   textAlign(CENTER, CENTER);
-  text('LOVE?', width/2, height/2);
+  text('The Teen Vogue Party', width/2, height/2);
+  textSize(30);
+  stroke(0,255,50);
+  text('TIME: TONIGHT', width/2, height/1.6);
+    text('MISSION: FIND AN OUTFIT FOR THE NIGHT!', width/2, height/1.4);
   pop();
-}
-
-// simulation
-simulation();
-
-function simulation() {
-  move();
-  checkOffscreen();
-  checkOverlap();
-  display();
 }
 
 function love() {
   push();
-  textSize(64);
-  fill(255,150,150);
+  // background (255, 255, 255);
+  textSize(35);
+  fill(255,50,255);
+  textStyle(BOLD);
+  stroke(0,200,255);
+  strokeWeight(17);
   textAlign(CENTER, CENTER);
-  text('LOVE', width/2, height/2);
-  pop();
-}
-
-function sadness() {
-  push();
-  textSize(64);
-  fill(150,150,255);
-  textAlign(CENTER, CENTER);
-  text('RIP', width/2, height/2);
+  text('I LOVE THIS OUTFIT!', width/2, height/2);
+  text('IT GOT SOME BLUE GOING ON!', width/2, height/1.6);
   pop();
 }
 //**************************//
 
-//**************************//
+
+}
+
+// Mouse functions: pressed;
 function mousePressed() {
   if (state === 'title') {
     state = 'simulation';
   }
 }
 //**************************//
-
-}
