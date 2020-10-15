@@ -13,11 +13,15 @@ let outfit1 = {
   vx: 0,
   vy:0,
   speed: 5,
-  fill: {
-    r: 255,
-    g:50,
-    b:120,
-  }
+};
+
+let outfit2 = {
+  x: 0,
+  y: 250,
+  size:100,
+  vx: 0,
+  vy:0,
+  speed: 5,
 };
 
 let stickyman = {
@@ -38,9 +42,12 @@ let stickyman = {
 
 let stickyImage;
 let outfit1Image;
+let outfit2Image;
 function preload() {
-stickyImage = loadImage("assets/images/stickyman.png");
 outfit1Image = loadImage("assets/images/outfit1.png");
+outfit2Image = loadImage("assets/images/outfit2.png");
+stickyImage = loadImage("assets/images/stickyman.png");
+
 }
 
 
@@ -52,6 +59,9 @@ createCanvas(windowWidth,windowHeight);
 
 outfit1.x = random(0,width);
 outfit1.vy = outfit1.speed;
+
+outfit2.x = random(0,width);
+outfit2.vy = outfit1.speed;
 
 noCursor();
 }
@@ -65,12 +75,6 @@ function draw() {
 handleInput();
 move();
 
-//Sticky image
-push()
-   imageMode(CENTER);
-   image(stickyImage, stickyman.x, stickyman.y);
-pop()
-
 // outfit1 movement
    outfit1.x = outfit1.x + outfit1.vx;
    outfit1.y = outfit1.y + outfit1.vy;
@@ -79,6 +83,16 @@ pop()
      outfit1.y = 0;
      outfit1.x = random(0,width);
      }
+
+// outfit2 movement
+    outfit2.x = outfit2.x + outfit2.vx;
+    outfit2.y = outfit2.y + outfit2.vy;
+
+    if (outfit2.y > height) {
+      outfit2.y = 0;
+      outfit2.x = random(0,width);
+      }
+
 
 // stickyImage movement
   function move() {
@@ -90,16 +104,21 @@ pop()
      // user.x = mouseX;
      // user.y = mouseY;
 
-// check for bumping covid19
+// check for bumping with outfit
      let d = dist(stickyman.x,stickyman.y,outfit1.x,outfit1.y);
      if (d < outfit1.size/2 + stickyman.size/2) {
     noLoop();
      }
 
-// display outfit1
+// display outfit1 & outfit2
    image(outfit1Image, outfit1.x, outfit1.y, outfit1.size);
+   image(outfit2Image, outfit2.x, outfit2.y, outfit2.size);
 
-
+   //Sticky image
+   push()
+      imageMode(CENTER);
+      image(stickyImage, stickyman.x, stickyman.y);
+   pop()
 }
 
 // Mouse functions: pressed & dragged;
