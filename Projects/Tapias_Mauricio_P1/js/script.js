@@ -42,9 +42,10 @@ let user = {
 };
 
 let stickyImage;
-
+let outfit1Image;
 function preload() {
-stickyImage = loadImage("assets/images/logo.png")
+stickyImage = loadImage("assets/images/logo.png");
+outfit1Image = loadImage("assets/images/stickman-outfit1.png");
 }
 
 
@@ -54,8 +55,8 @@ stickyImage = loadImage("assets/images/logo.png")
 function setup() {
 createCanvas(windowWidth,windowHeight);
 
-covid19.y = random(0,height);
-covid19.vx = covid19.speed;
+covid19.x = random(0,width);
+covid19.vy = covid19.speed;
 
 noCursor();
 }
@@ -64,12 +65,9 @@ noCursor();
 //
 // background; no stroke; kermitimage; covid 19-20 movement & growth; user movement; display of user and covid 19-20;
 function draw() {
-   background (50, 255, 50);
+   background (255, 255, 255);
 
-//shape outline
-   noStroke()
-
-//kermit image
+//Sticky image
    imageMode(CENTER);
    image(stickyImage, mouseX, mouseY);
 
@@ -78,35 +76,35 @@ function draw() {
    covid19.x = covid19.x + covid19.vx;
    covid19.y = covid19.y + covid19.vy;
 
-   if (covid19.x > width) {
-     covid19.x = 0;
-     covid19.y = random(0,height);
+   if (covid19.y > height) {
+     covid19.y = 0;
+     covid19.x = random(0,width);
      }
 
-     //covid 19 growth
-    if (covid19.x < width/1.002){
-      covid19.size = covid19.size + 3;
-      }
-      else {
-        covid19.size = 100;
-      }
+    //  //covid 19 growth
+    // if (covid19.x < width/1.002){
+    //   covid19.size = covid19.size + 3;
+    //   }
+    //   else {
+    //     covid19.size = 100;
+    //   }
 
-      // covid 20 movement
-      covid20.x = covid20.x + covid20.vx;
-      covid20.y = covid20.y + covid20.vy;
-
-      if (covid20.x > width) {
-        covid20.x = 0;
-        covid20.y = random(0,height);
-        }
-
-        //covid 20 growth
-       if (covid20.x < width/1.002){
-         covid20.size = covid20.size + 1;
-         }
-         else {
-           covid20.size = 100;
-         }
+      // // covid 20 movement
+      // covid20.x = covid20.x + covid20.vx;
+      // covid20.y = covid20.y + covid20.vy;
+      //
+      // if (covid20.x > width) {
+      //   covid20.x = 0;
+      //   covid20.y = random(0,height);
+      //   }
+      //
+      //   //covid 20 growth
+      //  if (covid20.x < width/1.002){
+      //    covid20.size = covid20.size + 1;
+      //    }
+      //    else {
+      //      covid20.size = 100;
+      //    }
 
      //user movement
      user.x = mouseX;
@@ -119,16 +117,12 @@ function draw() {
      }
 
      // display covid 19
-   fill(covid19.fill.r, covid19.fill.g, covid19.fill.b);
-   ellipse(covid19.x, covid19.y, covid19.size);
+   image(outfit1Image, covid19.x, covid19.y, covid19.size);
 
-   // display covid 20
-   fill(covid20.fill.r, covid20.fill.g, covid20.fill.b);
-   ellipse(covid20.x, covid20.y, covid20.size);
+   // // display covid 20
+   // fill(covid20.fill.r, covid20.fill.g, covid20.fill.b);
+   // ellipse(covid20.x, covid20.y, covid20.size);
 
-   // display user
-   fill(user.fill);
-   square(user.x, user.y, user.size);
 
 }
 // Mouse functions: pressed & dragged;
