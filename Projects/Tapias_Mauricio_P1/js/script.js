@@ -32,6 +32,9 @@ let stickyman = {
   vy:0,
   speed: 5,
 };
+//**************************//
+let state = 'title';
+//**************************//
 
 // let user = {
 //   x: 250,
@@ -156,4 +159,68 @@ function handleInput() {
   else {
     stickyman.vx = 0;
   }
+
+//**************************//
+  //TITLES
+if (state === 'title') {
+  title();
+}
+  else if (state === 'simulation') {
+    simulation();
+  }
+  else if (state === 'love') {
+    love();
+  }
+  else if (state === 'sadness') {
+    sadness();
+  }
+//**************************//
+
+//**************************//
+function title() {
+  push();
+  textSize(64);
+  fill(200,100,100);
+  textAlign(CENTER, CENTER);
+  text('LOVE?', width/2, height/2);
+  pop();
+}
+
+// simulation
+simulation();
+
+function simulation() {
+  move();
+  checkOffscreen();
+  checkOverlap();
+  display();
+}
+
+function love() {
+  push();
+  textSize(64);
+  fill(255,150,150);
+  textAlign(CENTER, CENTER);
+  text('LOVE', width/2, height/2);
+  pop();
+}
+
+function sadness() {
+  push();
+  textSize(64);
+  fill(150,150,255);
+  textAlign(CENTER, CENTER);
+  text('RIP', width/2, height/2);
+  pop();
+}
+//**************************//
+
+//**************************//
+function mousePressed() {
+  if (state === 'title') {
+    state = 'simulation';
+  }
+}
+//**************************//
+
 }
