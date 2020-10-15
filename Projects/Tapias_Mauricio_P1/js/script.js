@@ -15,7 +15,7 @@ let outfit1 = {
   vy: 0,
   speed: 5,
   minspeed: 2,
-  maxspeed: 20,
+  maxspeed: 15,
 };
 
 let outfit2 = {
@@ -26,8 +26,20 @@ let outfit2 = {
   vy: 0,
   speed: 5,
   minspeed: 2,
-  maxspeed: 20,
+  maxspeed: 15,
 };
+
+let outfit3 = {
+  x: 0,
+  y: 250,
+  size: 100,
+  vx: 0,
+  vy: 0,
+  speed: 5,
+  minspeed: 2,
+  maxspeed: 15,
+};
+
 
 let stickyman = {
   x: 750,
@@ -43,7 +55,7 @@ let state = 'title';
 //**************************//
 
 let hello = {
-  string: 'Hello,world',
+  string: 'These outfits are fire!!!',
   x: 0,
   y: 250,
 }
@@ -53,11 +65,13 @@ let hello = {
 let stickyImage;
 let outfit1Image;
 let outfit2Image;
+let outfit3Image;
 
 function preload() {
   outfit1Image = loadImage("assets/images/outfit1.png");
   outfit2Image = loadImage("assets/images/outfit2.png");
-  stickyImage = loadImage("assets/images/stickyman.png");
+  outfit3Image = loadImage("assets/images/outfit3.png");
+  stickyImage = loadImage("assets/images/stickymanSMALL.png");
 
 }
 
@@ -73,6 +87,9 @@ function setup() {
 
   outfit2.x = random(0, width);
   outfit2.vy = outfit1.speed;
+
+  outfit3.x = random(0, width);
+  outfit3.vy = outfit1.speed;
 
   noCursor();
 }
@@ -145,6 +162,16 @@ function simulation() {
     outfit2.vy = random (outfit2.minspeed, outfit2.maxspeed);
   }
 
+  // outfit3 movement
+  outfit3.x = outfit3.x + outfit3.vx;
+  outfit3.y = outfit3.y + outfit3.vy;
+
+  if (outfit3.y > height) {
+    outfit3.y = random(0, -200);
+    outfit3.x = random(0, width);
+    outfit3.vy = random (outfit3.minspeed, outfit3.maxspeed);
+  }
+
 
   // check for bumping with outfit
   let d = dist(stickyman.x, stickyman.y, outfit1.x, outfit1.y);
@@ -157,10 +184,18 @@ function simulation() {
     state = 'love';
   }
 
+  d = dist(stickyman.x, stickyman.y, outfit3.x, outfit3.y);
+ if (d < outfit3.size / 2 + stickyman.size / 2) {
+   state = 'love';
+ }
+
+
 
   // display outfit1 & outfit2
   image(outfit1Image, outfit1.x, outfit1.y, outfit1.size);
   image(outfit2Image, outfit2.x, outfit2.y, outfit2.size);
+  image(outfit3Image, outfit3.x, outfit3.y, outfit3.size);
+
 
   //Sticky image
   push()
@@ -168,9 +203,14 @@ function simulation() {
   image(stickyImage, stickyman.x, stickyman.y);
   pop()
 
-
+//HELLO TEXT POSTION + STYLE
   text(hello.string, hello.x, hello.y)
-
+  textSize(35);
+  fill(255, 180, 50);
+  textStyle(BOLD);
+  stroke(200, 50, 50);
+  strokeWeight(17);
+  textAlign(CENTER, CENTER);
 }
 
 
