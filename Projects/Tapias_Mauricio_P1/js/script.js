@@ -6,7 +6,7 @@ Pippin Barr
 
 Here is a description of this template p5 project.
 **************************************************/
-let covid19 = {
+let outfit1 = {
   x: 0,
   y: 250,
   size:100,
@@ -55,15 +55,15 @@ outfit1Image = loadImage("assets/images/stickman-outfit1.png");
 function setup() {
 createCanvas(windowWidth,windowHeight);
 
-covid19.x = random(0,width);
-covid19.vy = covid19.speed;
+outfit1.x = random(0,width);
+outfit1.vy = outfit1.speed;
 
 noCursor();
 }
 
 // draw()
 //
-// background; no stroke; kermitimage; covid 19-20 movement & growth; user movement; display of user and covid 19-20;
+// background; no stroke; stickyImage; covid 19 movement; user movement; display of user and covid 19;
 function draw() {
    background (255, 255, 255);
 
@@ -73,55 +73,27 @@ function draw() {
 
 
    // covid 19 movement
-   covid19.x = covid19.x + covid19.vx;
-   covid19.y = covid19.y + covid19.vy;
+   outfit1.x = outfit1.x + outfit1.vx;
+   outfit1.y = outfit1.y + outfit1.vy;
 
-   if (covid19.y > height) {
-     covid19.y = 0;
-     covid19.x = random(0,width);
+   if (outfit1.y > height) {
+     outfit1.y = 0;
+     outfit1.x = random(0,width);
      }
 
-    //  //covid 19 growth
-    // if (covid19.x < width/1.002){
-    //   covid19.size = covid19.size + 3;
-    //   }
-    //   else {
-    //     covid19.size = 100;
-    //   }
-
-      // // covid 20 movement
-      // covid20.x = covid20.x + covid20.vx;
-      // covid20.y = covid20.y + covid20.vy;
-      //
-      // if (covid20.x > width) {
-      //   covid20.x = 0;
-      //   covid20.y = random(0,height);
-      //   }
-      //
-      //   //covid 20 growth
-      //  if (covid20.x < width/1.002){
-      //    covid20.size = covid20.size + 1;
-      //    }
-      //    else {
-      //      covid20.size = 100;
-      //    }
 
      //user movement
      user.x = mouseX;
      user.y = mouseY;
 
      // check for bumping covid19
-     let d = dist(user.x,user.y,covid19.x,covid19.y);
-     if (d < covid19.size/2 + user.size/2) {
+     let d = dist(user.x,user.y,outfit1.x,outfit1.y);
+     if (d < outfit1.size/2 + user.size/2) {
     noLoop();
      }
 
      // display covid 19
-   image(outfit1Image, covid19.x, covid19.y, covid19.size);
-
-   // // display covid 20
-   // fill(covid20.fill.r, covid20.fill.g, covid20.fill.b);
-   // ellipse(covid20.x, covid20.y, covid20.size);
+   image(outfit1Image, outfit1.x, outfit1.y, outfit1.size);
 
 
 }
@@ -136,4 +108,18 @@ function mousePressed() {
 // user cursor shrink
 function mouseDragged() {
   user.size = user.size - 1;
+}
+
+
+function keyPressed() {
+  if (keycode === UP_ARROW) {
+    covid19.y = y - 10;
+  } else if (keycode === DOWN_ARROW) {
+    covid19.y = y + 10;
+  }
+  if (keycode === LEFT_ARROW) {
+    covid19.x = x - 5;
+  } else if (keycode === RIGHT_ARROW) {
+    covid19.x = x + 5;
+  }
 }
