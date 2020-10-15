@@ -7,6 +7,8 @@ Pippin Barr
 Here is a description of this template p5 project.
 **************************************************/
 
+let bg;
+
 let outfit1 = {
   x: 0,
   y: 250,
@@ -80,6 +82,7 @@ function preload() {
 //
 // Canvas; covid19 positions; no cursor;
 function setup() {
+  bg = loadImage('assets/images/background.png');
   createCanvas(windowWidth, windowHeight);
 
   outfit1.x = random(0, width);
@@ -98,7 +101,7 @@ function setup() {
 //
 // background; no stroke; stickyImage; covid 19 movement; user movement; display of user and covid 19;
 function draw() {
-  background(255, 255, 255);
+  background(bg);
 
 
   //**************************//
