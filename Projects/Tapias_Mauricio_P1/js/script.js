@@ -121,10 +121,10 @@ function draw() {
 }
 //COMMENT INTERACTIVE POSITION VIA SPACEBAR
 function keyPressed() {
-if (keyCode === 32) {
-     comment.x = random(0,width);
-     comment.y = random(0,height);
-     }
+  if (keyCode === 32) {
+    comment.x = random(0, width);
+    comment.y = random(0, height);
+  }
 }
 
 //TITLE SCREEN POSTION + STYLE
@@ -157,7 +157,7 @@ function simulation() {
   if (outfit1.y > height) {
     outfit1.y = random(0, -200);
     outfit1.x = random(0, width);
-    outfit1.vy = random (outfit1.minspeed, outfit1.maxspeed);
+    outfit1.vy = random(outfit1.minspeed, outfit1.maxspeed);
   }
 
   // OUTFIT 2 MOVEMENT
@@ -167,7 +167,7 @@ function simulation() {
   if (outfit2.y > height) {
     outfit2.y = random(0, -200);
     outfit2.x = random(0, width);
-    outfit2.vy = random (outfit2.minspeed, outfit2.maxspeed);
+    outfit2.vy = random(outfit2.minspeed, outfit2.maxspeed);
   }
 
   // OUTFIT 3 MOVEMENT
@@ -177,7 +177,7 @@ function simulation() {
   if (outfit3.y > height) {
     outfit3.y = random(0, -200);
     outfit3.x = random(0, width);
-    outfit3.vy = random (outfit3.minspeed, outfit3.maxspeed);
+    outfit3.vy = random(outfit3.minspeed, outfit3.maxspeed);
   }
 
 
@@ -187,15 +187,15 @@ function simulation() {
     state = 'love';
   }
 
-   d = dist(stickyman.x, stickyman.y, outfit2.x, outfit2.y);
+  d = dist(stickyman.x, stickyman.y, outfit2.x, outfit2.y);
   if (d < outfit2.size / 2 + stickyman.size / 2) {
     state = 'love';
   }
 
   d = dist(stickyman.x, stickyman.y, outfit3.x, outfit3.y);
- if (d < outfit3.size / 2 + stickyman.size / 2) {
-   state = 'love';
- }
+  if (d < outfit3.size / 2 + stickyman.size / 2) {
+    state = 'love';
+  }
 
 
 
@@ -211,7 +211,7 @@ function simulation() {
   image(stickyImage, stickyman.x, stickyman.y);
   pop()
 
-//COMMENT TEXT POSTION + STYLE
+  //COMMENT TEXT POSTION + STYLE
   text(comment.string, comment.x, comment.y)
   textSize(35);
   fill(255, 180, 50);
