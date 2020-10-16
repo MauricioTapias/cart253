@@ -1,10 +1,17 @@
 "use strict";
 
 /**************************************************
-Template p5 project
-Pippin Barr
+The Teen Vogue Party
+Mauricio Tapias
 
-Here is a description of this template p5 project.
+Stickyman was invited for tonight's Teen Vogue Party
+but he has to chose an outfit. Move stickyman's head
+to the top of the outfits with the the arrow keys.
+
+The outfits fall from above at different heights, positions and speeds.
+Stickyman will randomly display a comment about the outfits by pressing the spacebar.
+
+To start the simulation click the mouse.
 **************************************************/
 
 let bg;
@@ -52,16 +59,15 @@ let stickyman = {
   speed: 5,
 };
 
-//**************************//
-let state = 'title';
-//**************************//
 
-let hello = {
+let state = 'title';
+
+
+let comment = {
   string: 'These outfits are fire!!!',
   x: 0,
   y: 250,
 }
-
 
 
 let stickyImage;
@@ -80,7 +86,7 @@ function preload() {
 
 // setup()
 //
-// Canvas; covid19 positions; no cursor;
+// Canvas & loadimage for background; outfits' positions; no cursor;
 function setup() {
   bg = loadImage('assets/images/background.png');
   createCanvas(windowWidth, windowHeight);
@@ -99,12 +105,10 @@ function setup() {
 
 // draw()
 //
-// background; no stroke; stickyImage; covid 19 movement; user movement; display of user and covid 19;
+// background image; stickyImage movement; outfits' movement; display of stickyman and outfits;
 function draw() {
   background(bg);
 
-
-  //**************************//
   //TITLES
   if (state === 'title') {
     title();
@@ -115,15 +119,15 @@ function draw() {
   }
 
 }
-
+//COMMENT INTERACTIVE POSITION VIA SPACEBAR
 function keyPressed() {
 if (keyCode === 32) {
-     hello.x = random(0,width);
-     hello.y = random(0,height);
+     comment.x = random(0,width);
+     comment.y = random(0,height);
      }
 }
 
-
+//TITLE SCREEN POSTION + STYLE
 function title() {
   push();
   background(255, 255, 255);
@@ -141,11 +145,12 @@ function title() {
   pop();
 }
 
+//SIMULATION
 function simulation() {
   move();
   handleInput();
 
-  // outfit1 movement
+  // OUTFIT 1 MOVEMENT
   outfit1.x = outfit1.x + outfit1.vx;
   outfit1.y = outfit1.y + outfit1.vy;
 
@@ -155,7 +160,7 @@ function simulation() {
     outfit1.vy = random (outfit1.minspeed, outfit1.maxspeed);
   }
 
-  // outfit2 movement
+  // OUTFIT 2 MOVEMENT
   outfit2.x = outfit2.x + outfit2.vx;
   outfit2.y = outfit2.y + outfit2.vy;
 
@@ -165,7 +170,7 @@ function simulation() {
     outfit2.vy = random (outfit2.minspeed, outfit2.maxspeed);
   }
 
-  // outfit3 movement
+  // OUTFIT 3 MOVEMENT
   outfit3.x = outfit3.x + outfit3.vx;
   outfit3.y = outfit3.y + outfit3.vy;
 
@@ -176,7 +181,7 @@ function simulation() {
   }
 
 
-  // check for bumping with outfit
+  // BUMPING WITH OUTFITS
   let d = dist(stickyman.x, stickyman.y, outfit1.x, outfit1.y);
   if (d < outfit1.size / 2 + stickyman.size / 2) {
     state = 'love';
@@ -194,20 +199,20 @@ function simulation() {
 
 
 
-  // display outfit1 & outfit2
+  // DISPLAY OUTFIt 1-2-3
   image(outfit1Image, outfit1.x, outfit1.y, outfit1.size);
   image(outfit2Image, outfit2.x, outfit2.y, outfit2.size);
   image(outfit3Image, outfit3.x, outfit3.y, outfit3.size);
 
 
-  //Sticky image
+  //STICKYMAN IMAGE
   push()
   imageMode(CENTER);
   image(stickyImage, stickyman.x, stickyman.y);
   pop()
 
-//HELLO TEXT POSTION + STYLE
-  text(hello.string, hello.x, hello.y)
+//COMMENT TEXT POSTION + STYLE
+  text(comment.string, comment.x, comment.y)
   textSize(35);
   fill(255, 180, 50);
   textStyle(BOLD);
@@ -217,7 +222,7 @@ function simulation() {
 }
 
 
-// stickyImage controls
+// STICKYMAN CONTROLS
 function handleInput() {
   if (keyIsDown(UP_ARROW)) {
     stickyman.vy = -stickyman.speed;
@@ -237,9 +242,9 @@ function handleInput() {
   }
 }
 
+//END SCREEN POSTION + STYLE
 function love() {
   push();
-  // background (255, 255, 255);
   textSize(35);
   fill(255, 50, 255);
   textStyle(BOLD);
@@ -251,13 +256,13 @@ function love() {
   pop();
 }
 
-// stickyImage movement
+// STICKYMAN MOVEMENT
 function move() {
   stickyman.x = stickyman.x + stickyman.vx;
   stickyman.y = stickyman.y + stickyman.vy;
 }
 
-// Mouse functions: pressed;
+// MOUSE FUNCTIONS: PRESSED;
 function mousePressed() {
   if (state === 'title') {
     state = 'simulation';
