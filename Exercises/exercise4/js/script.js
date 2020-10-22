@@ -19,8 +19,10 @@ let ed = {
   speed: 5,
 };
 
+let edImage
+
 function preload() {
-  edImage = loadImage("assets/images/")
+  edImage = loadImage("assets/images/ed.png");
 }
 
 // setup()
@@ -58,6 +60,19 @@ function draw() {
   }
 }
 
+function simulation() {
+  move();
+  handleInput();
+
+  image(edImage, ed.x, ed.y, ed.size);
+
+  push()
+  imageMode(CENTER);
+  image(edImage, ed.x, ed.y);
+  pop()
+}
+
+
 function moveFish(fish) {
   let change = random(0,1);
   if (change < 0.05) {
@@ -80,7 +95,33 @@ function displayFish(fish) {
   pop();
 }
 
+function move() {
+  ed.x = ed.x + ed.vx;
+  ed.y = ed.y + ed.vy;
+}
+
 function mousePressed() {
   let fish = createFish(mouseX, mouseY);
   school.push(fish);
+}
+
+
+// Ed CONTROLS
+function handleInput() {
+  if (keyIsDown(UP_ARROW)) {
+    ed.vy = -ed.speed;
+  } else if (keyIsDown(DOWN_ARROW)) {
+    ed.vy = ed.speed;
+  } else {
+    ed.vy = 0;
+  }
+
+
+  if (keyIsDown(LEFT_ARROW)) {
+    ed.vx = -ed.speed;
+  } else if (keyIsDown(RIGHT_ARROW)) {
+    ed.vx = ed.speed;
+  } else {
+    ed.vx = 0;
+  }
 }
