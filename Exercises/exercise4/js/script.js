@@ -10,24 +10,9 @@ Here is a description of this template p5 project.
 let school = [];
 let schoolSize = 10;
 
-let ed = {
-  x: 750,
-  y: 350,
-  size: 100,
-  vx: 0,
-  vy: 0,
-  speed: 5,
-};
 
-let edImage
-
-function preload() {
-  edImage = loadImage("assets/images/ed.png");
-}
 
 // setup()
-//
-// Description of setup() goes here.
 function setup() {
   createCanvas(600, 600);
 
@@ -48,9 +33,9 @@ function createFish(x, y) {
   };
   return fish;
 }
+
+
 // draw()
-//
-// Description of draw() goes here.
 function draw() {
   background(0);
 
@@ -59,19 +44,6 @@ function draw() {
     displayFish(school[i]);
   }
 }
-
-function simulation() {
-  move();
-  handleInput();
-
-  image(edImage, ed.x, ed.y, ed.size);
-
-  push()
-  imageMode(CENTER);
-  image(edImage, ed.x, ed.y);
-  pop()
-}
-
 
 function moveFish(fish) {
   let change = random(0,1);
@@ -95,33 +67,7 @@ function displayFish(fish) {
   pop();
 }
 
-function move() {
-  ed.x = ed.x + ed.vx;
-  ed.y = ed.y + ed.vy;
-}
-
 function mousePressed() {
   let fish = createFish(mouseX, mouseY);
   school.push(fish);
-}
-
-
-// Ed CONTROLS
-function handleInput() {
-  if (keyIsDown(UP_ARROW)) {
-    ed.vy = -ed.speed;
-  } else if (keyIsDown(DOWN_ARROW)) {
-    ed.vy = ed.speed;
-  } else {
-    ed.vy = 0;
-  }
-
-
-  if (keyIsDown(LEFT_ARROW)) {
-    ed.vx = -ed.speed;
-  } else if (keyIsDown(RIGHT_ARROW)) {
-    ed.vx = ed.speed;
-  } else {
-    ed.vx = 0;
-  }
 }
